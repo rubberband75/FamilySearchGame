@@ -230,10 +230,21 @@ hr {
   position: absolute;
   z-index: 2; }
 
+
+/*
 .tile, .tile .tile-inner {
   width: 107px;
   height: 107px;
-  line-height: 116.25px; }
+  line-height: 116.25px;
+  border: 5px solid green }
+*/
+
+
+
+
+
+
+
 .tile.tile-position-1-1 {
   -webkit-transform: translate(0px, 0px);
   -moz-transform: translate(0px, 0px);
@@ -374,14 +385,20 @@ hr {
     color: #f9f6f2;
     background: #edc22e;
     box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.55556), inset 0 0 0 1px rgba(255, 255, 255, 0.33333);
-    font-size: 35px; }
+    font-size: 35px; 
+    font-size: 22px;
+    line-height: 40px;}
     @media screen and (max-width: 520px) {
       .tile.tile-2048 .tile-inner {
-        font-size: 15px; } }
+        font-size: 15px; 
+        font-size: 22px;
+        line-height: 40px;} }
   .tile.tile-super .tile-inner {
     color: #f9f6f2;
     background: #3c3a32;
-    font-size: 30px; }
+    font-size: 22px;
+    line-height: 40px; 
+  }
     @media screen and (max-width: 520px) {
       .tile.tile-super .tile-inner {
         font-size: 10px; } }
@@ -506,6 +523,20 @@ hr {
   display: block;
   text-align: center;
   float: right; }
+
+.login-button {
+  display: inline-block;
+  background: #8f7a66;
+  border-radius: 3px;
+  padding: 0 20px;
+  text-decoration: none;
+  color: #f9f6f2;
+  height: 40px;
+  line-height: 42px;
+  display: block;
+  text-align: center;
+  float: right;
+}
 
 .game-explanation {
   margin-top: 50px; }
@@ -641,7 +672,8 @@ hr {
   .tile, .tile .tile-inner {
     width: 58px;
     height: 58px;
-    line-height: 67.5px; }
+    line-height: 67.5px;
+    border: 12px solid blue}
   .tile.tile-position-1-1 {
     -webkit-transform: translate(0px, 0px);
     -moz-transform: translate(0px, 0px);
@@ -703,13 +735,11 @@ hr {
     -moz-transform: translate(202px, 135px);
     transform: translate(202px, 135px); }
   .tile.tile-position-4-4 {
-    -webkit-transform: translate(202px, 202px);
+    -webkit-transform: translate(202px, 202pxlogin-button);
     -moz-transform: translate(202px, 202px);
     transform: translate(202px, 202px); }
 
-  .tile .tile-inner {
-    font-size: 18px;
-    line-height: 14pt; }
+
 
   .game-message p {
     font-size: 30px !important;
@@ -718,3 +748,53 @@ hr {
     margin-top: 90px !important; }
   .game-message .lower {
     margin-top: 30px !important; } }
+
+.tile-inner{
+  width: 87px;
+  height: 87px;
+  line-height: 116.25px;
+  /*border: 12px solid yellow*/ }
+
+.tile-border-7{
+  border: 12px solid;
+  border-color: #FFB870;
+}
+
+.tile-border-6{
+  border: 12px solid;
+  border-color:  #EEEE4D;
+}
+
+.tile-border-5{
+  border: 12px solid;
+  border-color: #70DB70
+}
+
+.tile-border-4{
+  border: 12px solid;
+  border-color: #70AAE2
+}
+
+.tile-border-3{
+  border: 12px solid;
+  border-color: #FF9933
+}
+
+.tile-border-2{
+  border: 12px solid;
+  border-color: #3385D6
+}
+
+.tile-border-1{
+  border: 12px solid;
+  border-color: #F4F4F4
+}
+
+.tile-border-0{
+  border: 12px solid;
+  border-color: yellow
+}
+
+
+
+ 

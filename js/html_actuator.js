@@ -55,21 +55,31 @@ HTMLActuator.prototype.addTile = function (tile) {
   var positionClass = this.positionClass(position);
 
   // We can't use classlist because it somehow glitches when replacing classes
-  var classes = ["tile", "tile-" + tile.value, positionClass];
+  //var classes = ["tile", "tile-" + tile.person.CSSvalue, positionClass];
+  var classes = ["tile", "tile-2", positionClass];
 
-  if (tile.value > 2048) classes.push("tile-super");
+
+  //if (tile.value > 2048) classes.push("tile-super");
 
   this.applyClasses(wrapper, classes);
 
-  inner.classList.add("tile-inner");
 
-
-
-
+  var innerClasses = ["tile-inner", "tile-border-" + tile.person.border];
+  //var innerClasses = ["tile-inner"];
+  this.applyClasses(inner, innerClasses)
+  //inner.classList.add("tile-inner");
+  //inner.classlist.add("tile-border");
+  
   //inner.textContent = tile.value;
+
+
+
+
   var relations = ["Great Grandparent", "Grandparent", "Parent", "Child"];
   var title = Math.log(tile.value)/Math.LN2 - 1;
-  inner.textContent = relations[title];
+  var tileName = tile.person.name;
+  inner.textContent = tileName;
+  //inner.textContent = relations[title];
 
 
 

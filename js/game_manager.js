@@ -3,14 +3,36 @@ function GameManager(size, InputManager, Actuator, StorageManager) {
   this.inputManager   = new InputManager;
   this.storageManager = new StorageManager;
   this.actuator       = new Actuator;
+  this.personManager  = new PersonManager;
 
   this.startTiles     = 2;
+
+  this.tileValues     = [];
+  this.treePosition   = 0;
 
   this.inputManager.on("move", this.move.bind(this));
   this.inputManager.on("restart", this.restart.bind(this));
   this.inputManager.on("keepPlaying", this.keepPlaying.bind(this));
+  this.inputManager.on("logIn", this.logIn.bind(this));
 
-  this.setup();
+  //this.setup();
+}
+
+//Log In to FamilySearch
+GameManager.prototype.logIn = function () {
+  document.getElementById("loading_message").innerHTML = "Loading...";
+
+  var self = this;
+  authenticate().then(function(data){
+
+    
+    self.personManager.setLiveData(data);
+    document.getElementById("loading_message").innerHTML = "Ready";
+
+
+    self.setup();
+    var x = 0;
+  });
 }
 
 // Restart the game
@@ -36,14 +58,14 @@ GameManager.prototype.setup = function () {
   var previousState = this.storageManager.getGameState();
 
   // Reload the game from a previous game if present
-  if (previousState) {
+  /*if (previousState) {
     this.grid        = new Grid(previousState.grid.size,
                                 previousState.grid.cells); // Reload grid
     this.score       = previousState.score;
     this.over        = previousState.over;
     this.won         = previousState.won;
     this.keepPlaying = previousState.keepPlaying;
-  } else {
+  } else*/ {
     this.grid        = new Grid(this.size);
     this.score       = 0;
     this.over        = false;
@@ -58,8 +80,21 @@ GameManager.prototype.setup = function () {
   this.actuate();
 };
 
+GameManager.prototype.initializePersonVector = function () {
+  var names = this.personManager.getGeneration();
+  /*
+  var names = [];
+  for(var i = 0; i > this.personManager.people.length; i++){
+    names.push(this.personManager.people[i]);
+  }
+  */
+  this.tileValues = names;
+  
+};
+
 // Set up the initial tiles to start the game with
 GameManager.prototype.addStartTiles = function () {
+  this.initializePersonVector();
   for (var i = 0; i < this.startTiles; i++) {
     this.addRandomTile();
   }
@@ -68,8 +103,14 @@ GameManager.prototype.addStartTiles = function () {
 // Adds a tile in a random position
 GameManager.prototype.addRandomTile = function () {
   if (this.grid.cellsAvailable()) {
-    var value = 2;//Math.random() < 0.9 ? 2 : 4;
-    var tile = new Tile(this.grid.randomAvailableCell(), value);
+
+    if(this.tileValues.length == 0){return;}
+
+    var person = this.tileValues.pop();
+    //var person = this.personManager.getPerson(value);
+
+    //var value = 2;//Math.random() < 0.9 ? 2 : 4;
+    var tile = new Tile(this.grid.randomAvailableCell(), person.coupleID, person);
 
     this.grid.insertTile(tile);
   }
@@ -154,7 +195,11 @@ GameManager.prototype.move = function (direction) {
 
         // Only one merger per row traversal?
         if (next && next.value === tile.value && !next.mergedFrom) {
-          var merged = new Tile(positions.next, tile.value * 2);
+          var childID = tile.person.childID;
+          var pm = self.personManager;
+          var child = self.personManager.getPerson(tile.person.childID);
+          var merged = new Tile(positions.next, child.coupleID, child);
+          //var merged = new Tile(positions.next, tile.value * 2);
           merged.mergedFrom = [tile, next];
 
           self.grid.insertTile(merged);

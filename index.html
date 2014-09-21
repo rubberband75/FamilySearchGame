@@ -15,6 +15,9 @@
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
+  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="http://rootsdev.org/familysearch-javascript-sdk/familysearch-javascript-sdk.js"></script>
+
 </head>
 <body>
   <div class="container">
@@ -31,8 +34,10 @@
 
     <div class="above-game">
       <p class="game-intro">Join your ancestors all the way down to <strong>you!</strong></p>
+      <a class="login-button">Log In</a>
       <a class="restart-button">New Game</a>
     </div>
+    <div id="loading_message"> Click Login Button</div>
 
     <div class="game-container">
       <div class="game-message">
@@ -92,5 +97,8 @@
   <script src="js/local_storage_manager.js"></script>
   <script src="js/game_manager.js"></script>
   <script src="js/application.js"></script>
+  <script src="js/person.js"></script>  
+  <script src="js/familySearch.js"></script>
+  
 </body>
 </html>
