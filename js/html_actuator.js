@@ -55,8 +55,10 @@ HTMLActuator.prototype.addTile = function (tile) {
   var positionClass = this.positionClass(position);
 
   // We can't use classlist because it somehow glitches when replacing classes
-  //var classes = ["tile", "tile-" + tile.person.CSSvalue, positionClass];
-  var classes = ["tile", "tile-2", positionClass];
+  var classes = ["tile", "tile-" + tile.person.CSSvalue, positionClass];
+  
+  //this makes all tiles the same color
+  //var classes = ["tile", "tile-2", positionClass];
 
 
   //if (tile.value > 2048) classes.push("tile-super");
@@ -64,8 +66,8 @@ HTMLActuator.prototype.addTile = function (tile) {
   this.applyClasses(wrapper, classes);
 
 
-  var innerClasses = ["tile-inner", "tile-border-" + tile.person.border];
-  //var innerClasses = ["tile-inner"];
+  //var innerClasses = ["tile-inner", "tile-border-" + tile.person.border];
+  var innerClasses = ["tile-inner"];
   this.applyClasses(inner, innerClasses)
   //inner.classList.add("tile-inner");
   //inner.classlist.add("tile-border");

@@ -81,7 +81,10 @@ GameManager.prototype.setup = function () {
 };
 
 GameManager.prototype.initializePersonVector = function () {
-  var names = this.personManager.getGeneration();
+  //var names = this.personManager.getGeneration();
+  //var names = this.personManager.people.slice();
+  var names = this.personManager.people.slice();
+
   /*
   var names = [];
   for(var i = 0; i > this.personManager.people.length; i++){
@@ -106,7 +109,7 @@ GameManager.prototype.addRandomTile = function () {
 
     if(this.tileValues.length == 0){return;}
 
-    var person = this.tileValues.pop();
+    var person = this.tileValues.shift();
     //var person = this.personManager.getPerson(value);
 
     //var value = 2;//Math.random() < 0.9 ? 2 : 4;
@@ -195,24 +198,27 @@ GameManager.prototype.move = function (direction) {
 
         // Only one merger per row traversal?
         if (next && next.value === tile.value && !next.mergedFrom) {
-          var childID = tile.person.childID;
-          var pm = self.personManager;
-          var child = self.personManager.getPerson(tile.person.childID);
-          var merged = new Tile(positions.next, child.coupleID, child);
+          //var childID = tile.person.childID;
+          //var pm = self.personManager;
+          //var child = self.personManager.getPerson(tile.person.childID);
+          //var merged = new Tile(positions.next, child.coupleID, child);
           //var merged = new Tile(positions.next, tile.value * 2);
-          merged.mergedFrom = [tile, next];
+          //merged.mergedFrom = [tile, next];
 
-          self.grid.insertTile(merged);
+          ////self.grid.insertTile(merged);
+          
+          self.grid.removeTile(next);
+
           self.grid.removeTile(tile);
 
           // Converge the two tiles' positions
-          tile.updatePosition(positions.next);
+          //tile.updatePosition(positions.next);
 
           // Update the score
-          self.score += merged.value;
+          //self.score += merged.value;
 
           // The mighty 2048 tile
-          if (merged.value === 2048) self.won = true;
+          //if (merged.value === 2048) self.won = true;
         } else {
           self.moveTile(tile, positions.farthest);
         }

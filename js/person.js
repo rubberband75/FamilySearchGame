@@ -24,41 +24,11 @@ function Person(value, name, ID, fatherID, motherID, container){
 
 
 PersonManager.prototype.Initialize = function(data){
-  
-  /*
-  this.people.push(new Person(0, "Chandler Childs", 1000, 2001, 2002, this));  
-  
-  this.people.push(new Person(0, "Larry Childs", 2001, 4001, 4002, this));
-  this.people.push(new Person(0, "Geniel Rowley", 2002, 4003, 4004, this));  
-  
-  this.people.push(new Person(0, "Gordon Childs", 4001, 8001, 8002, this));
-  this.people.push(new Person(0, "Elaine Finlayson", 4002, 8003, 8004, this));
-  this.people.push(new Person(0, "Lorin Rowley", 4003, 8005, 8006, this));
-  this.people.push(new Person(0, "Frances Terry", 4004, 8007, 8008, this));
-
-  
-  this.people.push(new Person(0, "Bliss Childs", 8001, 9001, 9002, this));
-  this.people.push(new Person(0, "Eleanor Prows", 8002, 9003, 9004, this));
-  this.people.push(new Person(0, "Leon Finlayson", 8003, 9005, 9006, this));
-  this.people.push(new Person(0, "Claris Erickson", 8004, 9007, 9008, this));
-  this.people.push(new Person(0, "Heber Roley", 8005, 9009, 9010, this));
-  this.people.push(new Person(0, "Sarah Mortensen", 8006, 9011, 9012, this));
-  this.people.push(new Person(0, "Joseph Terry", 8007, 9013, 9014, this));
-  this.people.push(new Person(0, "Kate Burch", 8008, 9015, 9016, this));
-  */
-
 
   var me = this.people[0];
   me.CSSvalue = 2048;
   me.getTopGeneration(this.gen);
-  this.setBorderColor();
-
-  for(var i = 0; i < 15; i++){
-    this.people.push(this.people[i]);
-  }
-
-
-
+  //this.setBorderColor();
     
   return;
 }
@@ -66,20 +36,19 @@ PersonManager.prototype.Initialize = function(data){
 
 PersonManager.prototype.setLiveData = function(data) {
   for(var i = 0; i < data.length; i++){
-        //this.liveData.push({"name":data[i].display.name, "id":data[i].id});
         this.liveData.push(new Person(0, data[i].display.name, data[i].id, null, null, this));
   }
   
   this.establishRelationships();
   this.people = this.liveData;
-
-  this.Initialize();
+  this.people.shift();
+  //this.Initialize();
   console.log(this.liveData);
 }
 
 PersonManager.prototype.establishRelationships = function(){
   for(var i = 0; i < this.liveData.length; i++){
-    
+
     mother_position = ((i + 1) * 2);
     father_position = mother_position - 1;
 
