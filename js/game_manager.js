@@ -23,6 +23,7 @@ GameManager.prototype.logIn = function () {
   document.getElementById("loading_message").innerHTML = "Loading...";
 
   var self = this;
+  console.log(Date());
   authenticate().then(function(data){
 
     
@@ -206,13 +207,13 @@ GameManager.prototype.move = function (direction) {
           //merged.mergedFrom = [tile, next];
 
           ////self.grid.insertTile(merged);
-          
+          //tile.updatePosition(positions.next);
+          tile.updatePosition({'x':next.x, 'y':next.y})
           self.grid.removeTile(next);
-
           self.grid.removeTile(tile);
 
           // Converge the two tiles' positions
-          //tile.updatePosition(positions.next);
+          
 
           // Update the score
           //self.score += merged.value;
@@ -231,6 +232,7 @@ GameManager.prototype.move = function (direction) {
   });
 
   if (moved) {
+    this.addRandomTile();
     this.addRandomTile();
 
     if (!this.movesAvailable()) {

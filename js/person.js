@@ -35,10 +35,13 @@ PersonManager.prototype.Initialize = function(data){
 
 
 PersonManager.prototype.setLiveData = function(data) {
+  console.log(Date());
   for(var i = 0; i < data.length; i++){
         this.liveData.push(new Person(0, data[i].display.name, data[i].id, null, null, this));
   }
   
+
+  this.liveData[0].CSSvalue = 1;
   this.establishRelationships();
   this.people = this.liveData;
   this.people.shift();
@@ -65,6 +68,10 @@ PersonManager.prototype.establishRelationships = function(){
       var coupleID = this.liveData[father_position].ID + this.liveData[mother_position].ID;
       this.liveData[father_position].coupleID = coupleID;
       this.liveData[mother_position].coupleID = coupleID;
+
+      this.liveData[father_position].CSSvalue = this.liveData[i].CSSvalue * 2;
+      this.liveData[mother_position].CSSvalue = this.liveData[i].CSSvalue * 2;
+
 
     }
   }
